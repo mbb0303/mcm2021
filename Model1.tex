@@ -1,67 +1,59 @@
 \section{Model 1:Fungi Population Prediction Model}
-		\subsection{Competitive Lotca-Voterra Equations}
-        We assume that there is only one kind of fungi, Phlebia acerina DR60 A8A,and using data as follows:
-\begin{align}%单位改正体，下同
-    T=22^{\circ}C,M=-0.5\text{MPa},n=0.97,V_{ex}=8.51\text{mm/day},\nonumber\\
-    \rho_{hy}=0.27\mu g/cm^2,v_{de}=73.39\pm 10.22\%/122\text{days}\nonumber
-\end{align}
+\subsection{Competitive Lotka-Volterra equations}
+	Our final goal of modeling is to simulate the degradation of plant material by fungi. Therefore, at first we should resolve how will fungi community evolve under given environment conditions. In our model, there is competition between different fungi species rather than predator-prey relationship.  And all these species compete for common resource, which are plant material. Thus, the Competitive Lotka-Volterra Equations (CLV) is adopted to depict fungi population dynamics. 
+
+	The N-species CLV equations are: 
+	\begin{align}
+		\frac{\textrm d S_i}{\textrm d t}=r_iS_i(1-\frac{\sum_{j=1}^N\alpha_{ij}S_j}{K_i})
+	\end{align}  
+
+	where $S_i(t)$ is the size of the $i$-th population at a given time, $N$ is the total number interacting species, $r_i$ is inherent per-capita growth rate of $i$-th species, $\alpha_{ij}$ represents the effect species j has on the population of species i and $K_i$ is the carrying capacity of $i$-th species.
 
 
+ 
+\subsection{Parameter Estimation and Definition of CLV Equations}
+\subsubsection{Carrying Capacity: $K$}
+	In a given patch of land,  the overall living space is fixed. Therefore, the carrying capacity of one species is proportional to its density:
+	\begin{align}
+		K_i \propto \rho_i
+	\end{align}
 
- where r is pamrameter of describing the speed of growth, and k is bioligical capacity.
+	In our model there is no need to know the specific value of $K_i$, only the relative value matters.
+	
+\subsubsection{Inherent Per-capita Growth Rate: $r_i$}
+	According to definition, we have:
+	\begin{align}
+		r_i \propto v_{\text{extension}}
+	\end{align}
+            
+\subsubsection{Interaction Parameter: $\alpha_{ij}$}
 
-We assume that there are N kinds of different fungi, and the biomass of each kind of fungi is $S_i$. We only concern about the relative biomass of each kind of fungi, so we substitute $S_i$ with $x_i=S_i/K_i$.
+	$\alpha_{ij}$ means the effect species j has on the population of species i. Here we use the competitive rank of fungi, which is accessible to us, to define the parameter. And two rules must be followed:
+	\begin{itemize}
+		\item All $\alpha$ values are positive
+		\item $\alpha_{ij}=1$ when $i=j$
+	\end{itemize}
 
-We use the Competitive Lotca-Voterre equations, a model for the population dynamics of species competing for some resource. 
+	Therefore, we assume:
+	\begin{align}
+		\alpha_{ij}=\exp(1-\frac{n_i}{n_j})	
+	\end{align}
 
-\begin{align}
-    \frac{dS_i}{dt}=r_i S_i  (1- \frac{\sum_{j=1}^{N}\alpha_{ij}S_j}{K_i})
-\end{align}
+	Where $n_i$ represents the competitive rank.(The bigger the $n_i$, the higher the ranking)
 
-Using the substitution $x_i=S_i/K_i$, the equations can be written as below:
 
-\begin{align}
-    \frac{dx_i}{dt}=r_i x_i  (1- \frac{\sum_{j=1}^{N}\alpha_{ij}x_jK_j}{K_i})
-\end{align}
+\subsection{Results}
+	6 kinds of fungi were selected. Refer to the appendix for details. 
+	The computation was under such conditions:
+ 
+	\begin{align}
+    	T=22^{\circ}C,\ M=-0.5\text{MPa}\nonumber   
+	\end{align}
 
-where
-\begin{align}
-    r_i&=\frac{v_{extension}}{R}\\
-    K_i&=C\rho_i,C=const\\
-    \alpha_{ij}&=\exp{1-\frac{n_i}{n_j}}\\
-    \epsilon&=0.33
-\end{align}
+	and the population evolution with time is shown in Figure \ref{fig:result1}
 
-$\epsilon\:$is efficiency, according to the reference[3].
-		\subsection{Parameter Estimation of LV Equations}
-        We assume that $\alpha_{ij}=\exp(1-n_i/n_j)$, making the fungi with larger n having advantages over fungi with smaller n.
-			\subsubsection{Carrying Capacity:K}
-			\subsubsection{Inherent Per-capita Growth Rate:r}
-            When there's only one kind of fungi, it evolve as he equation below:
-
-            \begin{align}
-                \frac{dx(t)}{dt}=r(T,M)x(t)(1-\frac{S(t)}{K(T,M)})
-            \end{align}
-            So we assume that $r=\left< \frac{dS}{dt} \right>$
-		\subsection{Results}
-        We choose several kinds of fungi, the data are shown as follow:
-
-and the result after enough long time of evolution is shown in Figure 1, where temperature $T=25^{\circ}C$, moisture $M=-0.5MPa$
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=.6\textwidth]{25_05.png}
-    \caption{The result of Model 1}\label{fig:result1}%引用标记
+	\begin{figure}[H]
+    	\centering
+	    \includegraphics[width=.6\textwidth]{25_05.png}
+    	\caption{The result of Model 1}\label{fig:result1}
     \end{figure}
-
-%---------------------------------------------			
-	\subsection{Detail 1 about Model 1}
-
-%-------------------------------------------------
-
-
-
-
-
-
-
