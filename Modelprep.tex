@@ -1,15 +1,15 @@
 \section{Model Preperation}
 	\subsection{Assumptions}
-	\begin{enumerate}[\bfseries 1.]
-    	\item Fungi strains grow in a stable density;
-	    \item Fungi grow in a 2-D plane;
-    	\item The rate of decomposition of woody fibres is propotional to the number of fungi on it.
-	\end{enumerate}
+	\begin{itemize}
+		\item Fungi community is applied to Competitive Lotka-Volterra equations
+		\item We assume the research data is accurate
+		\item The parameter estimated from the data, which were generated from standardized experiment, are fungi's inherent traits
+	\end{itemize}
 	\subsection{Notations}
 	Important notations used in this paper are listed in Table \ref{tb:notation}
-	\begin{table}[!htbp]		\begin{center}		\caption{Notations}		\begin{tabular}{ccc}%两个A换行			\toprule			Symbol& Definition &Unit\\			\midrule			$T$&Temperature in Celcius&$^{\circ}C$\\			\specialrule{0em}{1pt}{1pt}			$M$&Moisture&MPa\\  			\specialrule{0em}{1pt}{1pt}			$n_i$&Fungi's Competitive Rank&$n \text{ is scaled to } [0,1]$\\			\specialrule{0em}{1pt}{1pt}			$\rho_{\text{hyphae}}$&Hyphae Density&$\mu g/cm^2$\\			\specialrule{0em}{1pt}{1pt}			$S_i$ &Popluation Size& Population of Fungi\\			\specialrule{0em}{1pt}{1pt}			$v_{\text{decomposition}}$ &Decomposition Rate& \% Dry weight loss  in 122 days\\ 			\specialrule{0em}{1pt}{1pt}			$K_i$ & Bioligical Capacity& $\mu g$\\			\specialrule{0em}{1pt}{1pt}			$M_{\text{woody}}$ & Weight of the Woody&$g$\\			\bottomrule		\end{tabular}\label{tb:notation}		\end{center}	\end{table}		
+	\begin{table}[H]		\begin{center}		\caption{Notations}		\begin{tabular}{ccc}			\toprule			Symbol& Definition &Unit\\			\midrule			$T$&Temperature in Celcius&$^{\circ}C$\\			\specialrule{0em}{1pt}{1pt}			$M$&Moisture&MPa\\  			\specialrule{0em}{1pt}{1pt}			$n_i$&Fungi's Competitive Rank&$n \text{ is scaled to } [0,1]$\\			\specialrule{0em}{1pt}{1pt}			$\rho_{\text{extension}}$&Fungi's Extension Rate&$\text{mm/day}$\\			\specialrule{0em}{1pt}{1pt}			$S_i$ &Fungi's Popluation Size& $\mu \text g$\\ 			\specialrule{0em}{1pt}{1pt}			$K_i$ & Bioligical Capacity& $\mu \text g$\\			\specialrule{0em}{1pt}{1pt}			$M_{\text{woody}}$ & Weight of the Woody&$\mu \text g$\\			\bottomrule		\end{tabular}\label{tb:notation}		\end{center}	\end{table}		
 	\subsection{Data Collection}
-	The data we use mainly include several kinds of fungi's growth rate with temperature and moisture. The data sources are summarized in Table \ref{tb:data}.
+	The data we use mainly include several kinds of fungi's growth rate with temperature and moisture and their inherent traits. The data sources are summarized in Table \ref{tb:data}.
 	\begin{table}[!htbp]
 	\begin{center}
 		\caption{Data Sources}
@@ -18,10 +18,10 @@
 			\multicolumn{1}{m{5cm}}{\centering Data}
 			&\multicolumn{1}{m{5cm}}{\centering Source}\\
 			\midrule
-			
-			$\text{Different fungi trait}$& github.com/dsmaynard/\\
-			$\text{Different fungi growth rate}$& github.com/dsmaynard/\\
-			
+			Fungi Variable and Description & https://www.pnas.org/content/pnas/117/21/11551.full.pdf\\
+			Fungal\_trait\_data.csv&https://github.com/dsmaynard/fungal\_biogeography\\
+			Fungi\_moisture\_curves.csv& https://github.com/dsmaynard/fungal\_biogeography\\
+			Fungi\_temperature\_curves.csv& https://github.com/dsmaynard/fungal\_biogeography\\
 			\bottomrule
 		\end{tabular}\label{tb:data}
 	\end{center}	
