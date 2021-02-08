@@ -1,0 +1,222 @@
+%%
+%% EasyMCM: ä¸ä¸ªç®æ´ãæç¨çç¾èµæ¨¡æ¿
+%% Oringinal template (MCMthesis v5.0) by latexstudio, <latexstudio@hotmail.com>
+%% Redeveloped by youjiarui189 (xjtu-blacksmith), <yjr134@163.com>
+%% ç®åç±è¥¿å®äº¤å¤§é±é¢å­¦è¾ï¼@qyxfï¼è´è´£ï¼ç½åï¼https://qyxf.site/
+%%
+%% v5.00: æ³¨éå¨é¨æ±åï¼ä¸æ·»å äºå¤§éæ³¨éï¼ï¼å¹¶å°æ ¼å¼æ¹è¿ä¸ºç¬¦åå½åè§èççæ¬
+%% v5.01: æ­£å¼æ¹ä¸ºç¬ç«å®å EasyMCMï¼æ¹ä¸ºç®æ´ãæ¸æ°ãç¬¦åç¾èµè§èçæ ¼å¼
+%% v5.02: æ¯æäº 7 ä½æ§å¶å·ï¼æ¹è¿äºè¥å¹²å·²ç¥é®é¢ï¼å¹¶è¡¥åäºä¸äºéå¿éçåå®¹
+%% v5.1 : éé 2020 å¹´ Summary sheet æ ·å¼ï¼å¤§å¹ä¼åä»£ç ï¼æ´å ç®ææç¨
+%% 
+%% åå®¢å°åï¼http://www.cnblogs.com/xjtu-blacksmith/
+%% GitHub åå¸é¡µé¢ï¼https://github.com/qyxf/easymcm/releases
+%%
+
+\NeedsTeXFormat{LaTeX2e}[2005/12/01]
+\ProvidesPackage{easymcm}[2019/01/21 EasyMCM v5.1]
+\typeout{EasyMCM Package, version 5.1}
+
+% åºæ¬å®å 
+\RequirePackage[a4paper,margin=2.5cm,bottom=1.5cm]{geometry}  % é¡µè¾¹è·åçº¸å¼ å¤§å°
+\RequirePackage{fancyhdr,fancybox}  % è®¾ç½®é¡µçé¡µè
+\RequirePackage{ifthen}  % é»è¾ç»æ
+\RequirePackage{lastpage}  % çæ"Page X of XX"
+\RequirePackage{paralist}  % ä¿®æ¹ itemize åé¡¹é´è·
+\RequirePackage{indentfirst}  % å¨æé¦è¡ç¼©è¿
+\RequirePackage[toc,page,title,titletoc,header]{appendix}  % éå½å®å¶
+
+% æ°å­¦å¬å¼
+\RequirePackage{amsfonts,amsmath,amssymb} % AMS-LaTeX ç¬¦å·ãå¬å¼
+
+% å®çç¯å¢å£°æ
+% äºå®ä¸å¤§é¨åè®ºæä¸­ç¨ä¸å°ï¼ä½ä»ä¿çä»¥ä¾ä½¿ç¨
+\newtheorem{Theorem}{Theorem}[section]
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{Proposition}[Theorem]{Proposition}
+\newtheorem{Definition}[Theorem]{Definition}
+\newtheorem{Example}[Theorem]{Example}
+
+% ç®å½
+\RequirePackage{titlesec,titletoc}  % èªå®ä¹ç®å½æ ·å¼
+\setcounter{tocdepth}{3}  % ç®å½æ¾ç¤ºå° subsubsection(3) çº§å«
+\RequirePackage[font=small]{caption}  % ä½¿å¾è¡¨æ é¢å­å·å°ä¸å·
+\renewcommand\abstractname{}  % æè¦æ é¢
+
+% è¡¨æ ¼ç¸å³
+\RequirePackage{longtable,multirow,array}  % åç§åºæ¬çè¡¨æ ¼å®å
+\RequirePackage{booktabs}  % ä¸çº¿è¡¨å®å
+
+% å­ä½ç¸å³
+\RequirePackage[T1]{fontenc}  % å¼å¯æå±åºæ­£æå­ä½
+\RequirePackage{url}  % ç½åå®åï¼ä»¥ä¸å½ä»¤ä½¿å¾ç½åè½èªå¨æ¢è¡
+\def\UrlBreaks{\do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J
+\do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V
+\do\W\do\X\do\Y\do\Z\do\[\do\\\do\]\do\^\do\_\do\`\do\a\do\b
+\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n
+\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z
+\do\.\do\@\do\\\do\/\do\!\do\_\do\|\do\;\do\>\do\]\do\)\do\,
+\do\?\do\'\do+\do\=\do\#}
+
+% åºæ¬åæ°
+\setlength{\headheight}{15pt}
+\newcommand{\MCM@control}{0000000}  % éä¼æ§å¶å·ï¼é»è®¤ä¸º 0000000
+\DeclareOption*{\edef\MCM@control{\CurrentOption}}  % å®åéé¡¹æ¥æ¶æ§å¶å·
+\ProcessOptions
+\newcommand{\control}{\MCM@control}
+\newcommand{\team}{Team \#\ \MCM@control}
+\newcommand{\contest}{MCM/ICM}
+
+% ä¹¦ç­¾ï¼æå¾åäº¤åå¼ç¨çè®¾ç½®
+\RequirePackage{graphicx}  % æå¾
+\RequirePackage{flafter}  % å¼ç¨è¯¥å®åå¯é¿åå¾çå¨å¼ç¨å®çæ­£æä¹ååºç°
+\RequirePackage{ifpdf}  % å¤æ­æ¯å¦å¨è¿è¡ pdftex
+\ifpdf%
+\RequirePackage{epstopdf}  % pdftex ä¸è½ä½¿ç¨ eps å¾çï¼ç¨è¯¥å®åè½¬æ pdf åä½¿ç¨
+\DeclareGraphicsExtensions{.pdf,.jpg,.jpeg,.png}    % åè®¸çå¾çç±»å
+\RequirePackage[
+    linkcolor=black,  % æ¶é¤é¾æ¥è²å½©
+    citecolor=black,
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=black]{hyperref}
+\else\DeclareGraphicsExtensions{.eps,.ps}  % ä¸éè¦è½¬æ¢ eps å¾çæ ¼å¼
+\ifxetex\RequirePackage[
+    xetex,  % è¿è¡ xetex
+    pdfstartview=FitH,
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=black]{hyperref}
+\else\RequirePackage[
+    dvipdfm,  % è¿è¡å¶ä»ç¼è¯å¼æï¼å¦ luatexï¼
+    pdfstartview=FitH,
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=black]{hyperref}
+\fi\fi
+
+% ä»¥ä¸è®¾ç½®ä½¿å¾ä¸é¡µä¸æå¤æå­ä¸ªæµ®å¨å¯¹è±¡ï¼å¾ãè¡¨ï¼
+% ä¸é¡¶é¨æå¤ä¸ä¸ªï¼åºé¨æå¤ä¸ä¸ª
+% å¯èªè¡ä¿®æ¹åæ°
+\setcounter{totalnumber}{6}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{3}
+
+% å¾å¤äººåç°ç¼ºççæµ®å¨åæ°è¿äºä¸¥æ ¼äº
+% ä¸é¢çå½ä»¤
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.65}
+\renewcommand{\floatpagefraction}{0.60}
+% å°æµ®å¨åæ°éæ°è®¾ç½®ä¸ºæ´å®½æ¾çå¼ã
+% ---éèªãLaTeX2eæå¾æåã
+
+% å¾è¡¨æ é¢åç§°
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
+\setlength{\belowcaptionskip}{4pt}
+\setlength{\abovecaptionskip}{4pt}  % è®¾ç½® caption ä¸ä¸ä¸æé´è·
+
+% ä»¥ä¸å®ä¹äºèªå¨è¯å«çå¾è¡¨æä»¶å¤¹
+% è¥ä½¿ç¨è¿äºåå­å½åæä»¶å¤¹
+% åå¼ç¨å¾çè·¯å¾æ¶åªéå¡«æä»¶åå³å¯
+\graphicspath{{./}{./img/}{./fig/}{./image/}{./figure/}{./picture/}}
+
+% é¡µçé¡µèè®¾ç½®
+\lhead{\small \team}
+\chead{}
+\rhead{\small Page \thepage\ of \pageref{LastPage}}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+% ä¿¡ä»¶/å¤å¿å½ç¯å¢
+\newcounter{prefix}  % åå»ºéèåç¼è®¡æ°å¨ï¼é¿åå¯¹ letter ç¯å¢ç¼å·
+\renewcommand{\theHsection}{\theprefix.\thesection}  % éå¯¹ hyperref
+\newenvironment{letter}[1]{\refstepcounter{section}\addtocounter{section}{-1}\section*{#1}\addcontentsline{toc}{section}{#1}}{\stepcounter{prefix}}
+
+% å¿«ä¹ etoolbox
+\RequirePackage{etoolbox}  % åè½»æ­£æå¤æåº¦
+\AtBeginEnvironment{abstract}{\setlength\parskip{1ex}}  % æè¦ä¸­å¢å æ®µè·
+\AtBeginEnvironment{thebibliography}{
+    \refstepcounter{section}
+    \addcontentsline{toc}{section}{References}}  % åèæç®éå é¾æ¥
+\BeforeBeginEnvironment{subappendices}{
+    \clearpage
+    \setcounter{secnumdepth}{-1}}  % éå½éå é¾æ¥
+\BeforeBeginEnvironment{letter}{\clearpage}  % ä¿¡ä»¶ç¯å¢éå æ¢é¡µ
+
+% COMAP è¦æ±ç Summary Sheet æ é¢ï¼2020ï¼
+% æ³¨ææ¯å¹´æ¯èµæ¶æå¯è½æå°è°æ´
+% è¯·ä»¥å®ç½åå¸çæ ·å¼ä¸ºåèªè¡åå°çä¿®æ¹ï¼
+\newcommand{\@problem}[1]{}
+\newcommand{\problem}[1]{\gdef\@problem{#1}}
+\newcommand{\makesheet}{ %çæsheetå¤´å½ä»¤çå®ä¹
+    \null%
+    \vspace*{-5pc}%
+    \begin{center}
+    \begingroup
+    \setlength{\parindent}{0pt}
+    \begin{minipage}[t]{0.33\linewidth}
+        \centering
+        \textbf{Problem Chosen}\\
+        \LARGE\@problem
+        \end{minipage}%
+        \begin{minipage}[t]{0.34\linewidth}
+        \centering
+        \bfseries\the\year\\\contest\\{Summary Sheet}
+        \end{minipage}%
+        \begin{minipage}[t]{0.33\linewidth}
+        \centering
+        \textbf{Team Control Number}\\
+        \LARGE\MCM@control\\[1.8pc]
+    \end{minipage}\par
+    \vskip1ex
+    \rule{\linewidth}{1.5pt}\par
+    \endgroup
+    \vskip 10pt%
+    \end{center}}
+
+% abstract ç¯å¢çè®¾ç½®
+\newbox\@abstract   % å°æè¦åå»ºä¸ºçå­
+\setbox\@abstract\hbox{}  % çå­ç½®ç©º
+\long\def\abstract{\bgroup\global\setbox\@abstract\vbox\bgroup\hsize\textwidth}
+\def\endabstract{\egroup\egroup}
+\def\make@abstract{
+    \vskip -10pt\par
+    {\centering\Large\bfseries\@title\vskip1ex}\par  % æå¥è®ºææ é¢ï¼å­å·å¯èªå·±ä¿®æ¹
+    {\centering\bfseries\abstractname\vskip1.5ex}\par  %æè¦æ é¢
+    \noindent\usebox\@abstract\par  % æè¦æ­£æ
+    \vskip 10pt}  % åºé¨çç©ºï¼è¥ä¸éè¦å¯å å»
+
+% Summary Sheet çæ
+\def\@maketitle{
+	\makesheet%
+	\make@abstract
+    \pagenumbering{gobble}
+    \pagestyle{empty}
+    \newpage
+    \pagenumbering{arabic}
+    \setcounter{page}{1}}
+
+% ç®å½çæ
+\renewcommand\tableofcontents{%
+    \centerline{\normalfont\Large\bfseries\contentsname%
+    \@mkboth{%
+    \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
+    \vskip 3ex%
+    \@starttoc{toc}%
+    \thispagestyle{empty}
+    \clearpage
+    \pagestyle{fancy}
+    \setlength\parskip{1ex}}  % è°æ´æ®µé´è·
+
+\endinput
