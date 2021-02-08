@@ -1,9 +1,9 @@
 \section{Model 1:Fungi Population Prediction Model}
 \subsection{Competitive Lotka-Volterra equations}
-	Our final goal of modeling is to simulate the degradation of plant material by fungi. Therefore, at first we should resolve how will fungi community evolve under given environment conditions. In our model, there is competition between different fungi species rather than predator-prey relationship.  And all these species compete for common resource, which are plant material. Thus, the Competitive Lotka-Volterra Equations (CLV) is adopted to depict fungi population dynamics. 
+	Our final goal of modeling is to simulate the degradation of plant material by fungi. Therefore, at first we should resolve how will fungi community evolve under given environment conditions. In our model, there are competitions between different fungi species rather than predator-prey relationship. And all these species compete for common resource, plant material. Thus, the Competitive Lotka-Volterra Equations (CLV) is  well adopted to depict fungi population dynamics. 
 
 	The N-species CLV equations are: 
-	\begin{align}
+	\begin{align}\label{CLV}
 		\frac{\textrm d S_i}{\textrm d t}=r_iS_i(1-\frac{\sum_{j=1}^N\alpha_{ij}S_j}{K_i})
 	\end{align}  
 
